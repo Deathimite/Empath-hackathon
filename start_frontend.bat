@@ -1,0 +1,3 @@
+@echo off
+echo Starting MindfulChat Frontend...
+npm run dev

@@ -1,152 +1,110 @@
-﻿# empath.ai — Mental Health AI Chatbot
+# Empath.ai - Mental Health Support Chatbot
 
-empath.ai is a modern mental health and well-being web application built using React, TypeScript, and Framer Motion.  
-It combines an AI-powered chat interface with practical coping tools like mood tracking, breathing exercises, journaling, meditation, and more — all wrapped in smooth animations and a calm, accessible UI.
+A compassionate AI-powered chatbot that provides emotional support and mood tracking capabilities.
 
-This app is meant to support, not diagnose or magically fix your life. If an app claims that, it’s lying.
+![Empath.ai Interface](https://via.placeholder.com/800x400/4F46E5/FFFFFF?text=Empath.ai)
 
----
+## 🌟 Features
 
-## Features
+- **Empathetic Chat Interface**: AI-powered conversations that detect emotional tone and respond with empathy.
+- **Advanced Emotion Detection**: Uses the **GoEmotions** model to detect **28 distinct emotions** (e.g., Joy, Grief, Admiration, Remorse) for highly nuanced responses.
+- **Crisis Intervention**: Built-in safety mechanisms to detect crisis keywords and provide immediate helpline resources.
+- **Mood Analytics**: Track your emotional patterns over time with visual dashboards.
+- **Coping Strategies**: Evidence-based techniques for emotional wellbeing.
+- **Secure Authentication**: User accounts with password hashing and session management.
+- **Privacy-Focused**: All conversations are processed locally.
 
-### Authentication
-- Login system using a custom AuthManager
-- Unauthenticated users are blocked from accessing the chatbot
-- Logout functionality available via Settings
+## 🏗️ Architecture
 
-### AI Chat
-- User ↔ Bot messaging
-- Message timestamps
-- Optional detected mood metadata:
-  - Emotion
-  - Confidence level (high / medium / low)
-- Central hub to navigate to recommended coping activities
+### Frontend (`/frontend`)
+- **Framework**: React with TypeScript
+- **State**: React Hooks + Local Storage
+- **UI Library**: shadcn/ui components + Tailwind CSS
+- **Structure**:
+  - `src/pages`: Main views (Login, Chat, Dashboard)
+  - `src/api-int`: Centralized API integration
+  - `src/components`: Reusable UI components
 
-### Mood Dashboard
-- Tracks mood history with:
-  - Date
-  - Mood label
-  - Numeric value
-  - Optional notes
-- Helps visualize emotional trends over time
+### Backend (`/backend`)
+- **Framework**: Flask with CORS
+- **Database**: SQLite (local `mindfulchat.db`)
+- **Auth**: Bcrypt password hashing + Server-side sessions
+- **Endpoints**:
+  - `/auth/*`: Login/Register
+  - `/chat`: Main chat interface
+  - `/mood/*`: Mood tracking & analytics
 
-### Wellness and Coping Activities
-Users can access multiple guided tools:
-- Breathing exercises (e.g., 4-7-8 breathing)
-- Journaling
-- Meditation
-- Calming sounds
-- Gratitude practice
-- Mindful breaks
-- Eating habits reflection
-- Sleep habits reflection
+### ML Model (`/mlmodel`)
+- **Model**: `SamLowe/roberta-base-go_emotions`
+- **Capabilities**: Classifies text into 28 emotional categories.
+- **Logic**: Custom response templates for every emotion.
 
-Each activity ends with a completion screen to acknowledge progress.
+## 🚀 Getting Started
 
-### Settings and Privacy
-- Accessibility preferences initialized using SystemPreferencesManager
-- Dedicated privacy information screen
-- Logout support
+### Prerequisites
+- **Node.js (v16+)** & **npm**
+- **Python 3.8+** & **pip**
 
-### Animations
-- Screen transitions handled using Framer Motion
-- AnimatePresence ensures smooth enter and exit animations
-- Clean, non-disruptive UI transitions
+### 1️⃣ Backend Setup
+The backend handles the AI logic and database.
 
----
+```bash
+cd backend
 
-## Tech Stack
+# Create virtual environment (Recommended)
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-- React (Functional Components and Hooks)
-- TypeScript
-- Framer Motion
-- Tailwind CSS
-- Custom utilities:
-  - AuthManager
-  - SystemPreferencesManager
+# Install dependencies
+pip install -r requirements.txt
 
----
+# Start the server
+python app.py
+```
+*Server runs at `http://localhost:5000`*
 
-## App Flow
+### 2️⃣ Frontend Setup
+The frontend is the React user interface.
 
-1. User lands on the Login Screen
-2. Successful login leads to Onboarding
-3. Main interaction occurs in Chat
-4. AI suggests coping activities
-5. User completes activities and reaches the Completion Screen
-6. Mood insights are available in the Dashboard
-7. Settings and Privacy remain accessible at all times
+```bash
+cd frontend
 
----
+# Install dependencies (First time only)
+npm install
 
-## Project Structure
+# Start development server
+npm run dev
+```
+*Frontend runs at `http://localhost:5173`*
 
-- src/
-  - components/
-    - ChatScreen.tsx  
-      - AI chatbot interface  
-      - Message handling and navigation to activities  
+## 📁 Project Structure
 
-    - OnboardingScreen.tsx  
-      - Initial welcome and app introduction  
+```
+HACKATHON/
+├── frontend/           # React Application
+│   ├── src/
+│   │   ├── pages/      # Login, Chat, Dashboard
+│   │   ├── api-int/    # API Services
+│   │   └── components/ # UI Elements
+│   ├── package.json
+│   └── vite.config.ts
+├── backend/            # Flask Server
+│   ├── app.py          # Main Entry Point
+│   ├── database.py     # SQLite Manager
+│   └── tests/          # Unit Tests
+├── mlmodel/            # AI Logic
+│   ├── emotion_analyzer.py
+│   └── chatbot.py
+└── README.md
+```
 
-    - MoodDashboard.tsx  
-      - Displays mood history  
-      - Visualizes emotional trends  
+## 🧠 AI Model
+We utilize the `SamLowe/roberta-base-go_emotions` model to identify **28 distinct emotions**:
+*Admiration, Amusement, Anger, Annoyance, Approval, Caring, Confusion, Curiosity, Desire, Disappointment, Disapproval, Disgust, Embarrassment, Excitement, Fear, Gratitude, Grief, Joy, Love, Nervousness, Optimism, Pride, Realization, Relief, Remorse, Sadness, Surprise, Neutral.*
 
-    - CopingStrategies.tsx  
-      - Lists available coping and wellness activities  
+## ⚠️ Important Notice
+**This is a supportive tool, not a replacement for professional mental health care.**
+If you are in crisis, the chatbot is designed to provide emergency resources immediately.
 
-    - BreathingExercise.tsx  
-      - Guided breathing exercises  
-      - Triggers completion flow  
-
-    - CompletionScreen.tsx  
-      - Shown after finishing an activity  
-      - Reinforces progress  
-
-    - JournalingScreen.tsx  
-      - Guided journaling interface  
-
-    - MeditationScreen.tsx  
-      - Meditation guidance and sessions  
-
-    - CalmingSoundsScreen.tsx  
-      - Ambient and calming audio options  
-
-    - GratitudePracticeScreen.tsx  
-      - Gratitude reflection prompts  
-
-    - MindfulBreakScreen.tsx  
-      - Short mindfulness and break activities  
-
-    - EatingHabitsScreen.tsx  
-      - Eating habit reflection and awareness  
-
-    - SleepHabitsScreen.tsx  
-      - Sleep habit tracking and guidance  
-
-    - PrivacyInfoScreen.tsx  
-      - Displays privacy-related information  
-
-    - SettingsScreen.tsx  
-      - App settings  
-      - Logout functionality  
-
-  - lib/
-    - authManager.ts  
-      - Handles authentication logic  
-      - Determines user access state  
-
-    - systemPreferences.ts  
-      - Initializes accessibility preferences  
-      - Manages system-level UI settings  
-
-  - App.tsx  
-    - Main application entry point  
-    - Screen routing and global state management
-
-
-
-
-
+## 🤝 Contributing
+This project was created for a hackathon. Contributions are welcome!
