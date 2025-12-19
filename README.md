@@ -80,29 +80,73 @@ Each activity ends with a completion screen to acknowledge progress.
 ---
 
 ## Project Structure
-src/
-├── components/
-│ ├── ChatScreen.tsx
-│ ├── OnboardingScreen.tsx
-│ ├── MoodDashboard.tsx
-│ ├── CopingStrategies.tsx
-│ ├── BreathingExercise.tsx
-│ ├── CompletionScreen.tsx
-│ ├── JournalingScreen.tsx
-│ ├── MeditationScreen.tsx
-│ ├── CalmingSoundsScreen.tsx
-│ ├── GratitudePracticeScreen.tsx
-│ ├── MindfulBreakScreen.tsx
-│ ├── EatingHabitsScreen.tsx
-│ ├── SleepHabitsScreen.tsx
-│ ├── PrivacyInfoScreen.tsx
-│ └── SettingsScreen.tsx
-│
-├── lib/
-│ ├── authManager.ts
-│ └── systemPreferences.ts
-│
-└── App.tsx
+
+- src/
+  - components/
+    - ChatScreen.tsx  
+      - AI chatbot interface  
+      - Message handling and navigation to activities  
+
+    - OnboardingScreen.tsx  
+      - Initial welcome and app introduction  
+
+    - MoodDashboard.tsx  
+      - Displays mood history  
+      - Visualizes emotional trends  
+
+    - CopingStrategies.tsx  
+      - Lists available coping and wellness activities  
+
+    - BreathingExercise.tsx  
+      - Guided breathing exercises  
+      - Triggers completion flow  
+
+    - CompletionScreen.tsx  
+      - Shown after finishing an activity  
+      - Reinforces progress  
+
+    - JournalingScreen.tsx  
+      - Guided journaling interface  
+
+    - MeditationScreen.tsx  
+      - Meditation guidance and sessions  
+
+    - CalmingSoundsScreen.tsx  
+      - Ambient and calming audio options  
+
+    - GratitudePracticeScreen.tsx  
+      - Gratitude reflection prompts  
+
+    - MindfulBreakScreen.tsx  
+      - Short mindfulness and break activities  
+
+    - EatingHabitsScreen.tsx  
+      - Eating habit reflection and awareness  
+
+    - SleepHabitsScreen.tsx  
+      - Sleep habit tracking and guidance  
+
+    - PrivacyInfoScreen.tsx  
+      - Displays privacy-related information  
+
+    - SettingsScreen.tsx  
+      - App settings  
+      - Logout functionality  
+
+  - lib/
+    - authManager.ts  
+      - Handles authentication logic  
+      - Determines user access state  
+
+    - systemPreferences.ts  
+      - Initializes accessibility preferences  
+      - Manages system-level UI settings  
+
+  - App.tsx  
+    - Main application entry point  
+    - Screen routing and global state management
+
+
 
 
 
