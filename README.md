@@ -80,5 +80,29 @@ Each activity ends with a completion screen to acknowledge progress.
 ---
 
 ## Project Structure
+src/
+├── components/
+│ ├── ChatScreen.tsx
+│ ├── OnboardingScreen.tsx
+│ ├── MoodDashboard.tsx
+│ ├── CopingStrategies.tsx
+│ ├── BreathingExercise.tsx
+│ ├── CompletionScreen.tsx
+│ ├── JournalingScreen.tsx
+│ ├── MeditationScreen.tsx
+│ ├── CalmingSoundsScreen.tsx
+│ ├── GratitudePracticeScreen.tsx
+│ ├── MindfulBreakScreen.tsx
+│ ├── EatingHabitsScreen.tsx
+│ ├── SleepHabitsScreen.tsx
+│ ├── PrivacyInfoScreen.tsx
+│ └── SettingsScreen.tsx
+│
+├── lib/
+│ ├── authManager.ts
+│ └── systemPreferences.ts
+│
+└── App.tsx
+
 
 
